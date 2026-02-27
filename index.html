@@ -724,651 +724,568 @@
     .btn svg { width: 18px; height: 18px; flex-shrink: 0; }
 
     /* ============================================================
-       ABOUT
+       ABOUT — Editorial reveal
     ============================================================ */
     .about {
-      background: var(--clr-bg-alt);
+      background: var(--clr-bg);
+      padding-block: clamp(5rem, 11vw, 10rem);
       position: relative;
       overflow: hidden;
     }
 
-    .about::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 1px;
-      background: var(--clr-border);
+    .about__inner {
+      max-width: var(--max-w);
+      margin-inline: auto;
+      padding-inline: clamp(1.25rem, 5vw, 2.5rem);
+      position: relative;
     }
 
-    .about__grid {
+    .about__eyebrow { display: inline-block; margin-bottom: 1.75rem; }
+
+    /* Word-reveal heading */
+    .about__heading-wrap {
+      position: relative;
+      margin-bottom: clamp(3rem, 6vw, 5rem);
+    }
+
+    .about__heading {
+      font-family: var(--ff-display);
+      font-size: clamp(3.5rem, 8.5vw, 7.5rem);
+      font-weight: 600;
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      color: var(--clr-primary-dk);
+    }
+
+    .word { display: inline-block; margin-right: 0.22em; }
+    .word-inner { display: inline-block; }
+    .word.is-accent .word-inner { color: var(--clr-accent); font-style: italic; }
+
+    /* Botanical decoratives */
+    .flora {
+      position: absolute;
+      pointer-events: none;
+      opacity: 0;
+      transform-origin: center;
+    }
+    .flora--1 { top: -1.5rem; right: 18%; width: clamp(38px,5vw,64px); }
+    .flora--2 { top: 40%;    right: -1rem; width: clamp(28px,3.5vw,50px); transform: translateY(-50%); }
+    .flora--3 { bottom: -2rem; left: 32%; width: clamp(26px,3vw,44px); }
+    .flora--4 { top: 0.5rem; left: -0.5rem; width: clamp(22px,2.5vw,36px); }
+    .flora--5 { bottom: 1rem; right: 34%; width: clamp(32px,4vw,52px); }
+    .flora--6 { top: 30%; left: 55%; width: clamp(18px,2vw,30px); }
+
+    /* Two-column body */
+    .about__body-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: clamp(3rem, 6vw, 6rem);
-      align-items: center;
+      gap: clamp(3rem, 7vw, 7rem);
+      align-items: start;
     }
 
-    .about__image-wrap {
-      position: relative;
+    /* Prevent grid blowout from nested fixed-width content */
+    .about__body-grid > * { min-width: 0; }
+
+    .about__text p { font-size: 1.05rem; line-height: 1.85; color: var(--clr-text-md); margin-bottom: 1.25rem; }
+    .about__text p:last-child { margin-bottom: 0; }
+    .about__text strong { color: var(--clr-text); }
+    .about__text em { color: var(--clr-accent); font-style: italic; }
+
+    /* Qualifications ticker */
+    .about__side-label {
+      display: block; font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--clr-accent); margin-bottom: 1.5rem;
     }
 
-    .about__image-frame {
-      width: 100%;
-      aspect-ratio: 3/4;
-      border-radius: var(--r-lg);
-      background: linear-gradient(135deg, var(--clr-primary-lt) 0%, var(--clr-primary) 100%);
-      position: relative;
+    .quals-ticker {
       overflow: hidden;
-      box-shadow: var(--shadow-lg);
+      border-top: 1px solid var(--clr-border);
+      border-bottom: 1px solid var(--clr-border);
+      padding-block: 0.9rem;
+      margin-bottom: 2.5rem;
     }
 
-    /* Illustrated placeholder since no real image */
-    .about__avatar {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-    }
-
-    .about__avatar-circle {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.25);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: var(--ff-display);
-      font-size: 3rem;
-      font-weight: 600;
-      color: #fff;
-      border: 3px solid rgba(255,255,255,0.4);
-    }
-
-    .about__avatar-text {
-      color: rgba(255,255,255,0.9);
-      font-size: 0.85rem;
-      font-weight: 500;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-    }
-
-    .about__image-badge {
-      position: absolute;
-      bottom: -1rem;
-      right: -1rem;
-      background: var(--clr-surface);
-      border-radius: var(--r-md);
-      padding: 1rem 1.25rem;
-      box-shadow: var(--shadow-md);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.2rem;
-      border: 1px solid var(--clr-border);
-    }
-
-    .about__image-badge-num {
-      font-family: var(--ff-display);
-      font-size: 2rem;
-      font-weight: 700;
-      color: var(--clr-accent);
-      line-height: 1;
-    }
-
-    .about__image-badge-label {
-      font-size: 0.72rem;
-      color: var(--clr-text-lt);
-      text-align: center;
-      max-width: 80px;
-    }
-
-    .about__content .label { margin-bottom: 0.75rem; display: block; }
-
-    .about__content h2 { margin-bottom: 1.25rem; }
-
-    .about__content p {
-      color: var(--clr-text-md);
-      font-size: 1.05rem;
-      line-height: 1.8;
-      margin-bottom: 1.25rem;
-    }
-
-    .about__quals {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.6rem;
-      margin-top: 1.75rem;
-    }
-
-    .about__qual {
+    .quals-ticker__track {
       display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      padding: 0.4rem 0.9rem;
-      background: var(--clr-surface);
-      border: 1px solid var(--clr-border);
-      border-radius: var(--r-pill);
-      font-size: 0.82rem;
-      font-weight: 500;
-      color: var(--clr-primary-dk);
+      gap: 2.5rem;
+      white-space: nowrap;
+      will-change: transform;
     }
 
-    .about__qual svg {
-      color: var(--clr-accent);
-      width: 14px;
-      height: 14px;
+    .quals-ticker__item {
+      display: inline-flex; align-items: center; gap: 0.75rem;
+      font-family: var(--ff-display); font-size: 1.15rem;
+      font-weight: 500; font-style: italic;
+      color: var(--clr-primary-dk); flex-shrink: 0;
     }
+
+    .quals-sep { color: var(--clr-accent); font-style: normal; }
+
+    /* About stats */
+    .about__stats {
+      display: grid; grid-template-columns: repeat(3,1fr);
+      gap: 1px; background: var(--clr-border);
+      border: 1px solid var(--clr-border); border-radius: var(--r-md); overflow: hidden;
+    }
+
+    .about__stat { background: var(--clr-surface); padding: 1.25rem 1rem; text-align: center; }
+    .about__stat-num { display: block; font-family: var(--ff-display); font-size: 2.2rem; font-weight: 700; color: var(--clr-accent); line-height: 1; margin-bottom: 0.25rem; }
+    .about__stat-label { font-size: 0.75rem; color: var(--clr-text-lt); line-height: 1.4; }
 
     /* ============================================================
-       SERVICES
+       SERVICES — Horizontal scroll
     ============================================================ */
-    .services { background: var(--clr-bg); }
-
-    .services__grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .service-card {
-      background: var(--clr-surface);
-      border: 1px solid var(--clr-border);
-      border-radius: var(--r-md);
-      padding: 2rem 1.75rem;
-      position: relative;
+    .services {
+      background: #1A2E28;
       overflow: hidden;
-      transition: transform var(--dur) var(--ease-spring), box-shadow var(--dur) var(--ease), border-color var(--dur) var(--ease);
     }
 
-    .service-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--clr-primary), var(--clr-accent));
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform var(--dur) var(--ease);
-    }
-
-    .service-card:hover {
-      transform: translateY(-5px);
-      box-shadow: var(--shadow-lg);
-      border-color: transparent;
-    }
-
-    .service-card:hover::before { transform: scaleX(1); }
-
-    .service-card__icon {
-      width: 52px;
-      height: 52px;
-      border-radius: var(--r-md);
-      background: linear-gradient(135deg, rgba(92, 122, 110, 0.1), rgba(196, 113, 75, 0.1));
+    .services__sticky {
+      height: 100vh;
       display: flex;
       align-items: center;
-      justify-content: center;
-      margin-bottom: 1.25rem;
-      font-size: 1.5rem;
+      position: relative;
+      overflow: hidden;
     }
 
-    .service-card h3 {
+    .services__bar {
+      position: absolute; top: 0; left: 0; right: 0;
+      padding: 1.5rem clamp(1.25rem, 5vw, 2.5rem);
+      display: flex; align-items: center; justify-content: space-between;
+      z-index: 10;
+    }
+
+    .services__bar-left { display: flex; align-items: center; gap: 0.75rem; }
+    .services__bar-tag { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.3); }
+    .services__bar-divider { width: 24px; height: 1px; background: rgba(255,255,255,0.12); }
+    .services__bar-title { font-family: var(--ff-display); font-size: 0.9rem; font-style: italic; color: rgba(255,255,255,0.35); }
+
+    .services__scroll-cue {
+      display: flex; align-items: center; gap: 0.5rem;
+      font-size: 0.7rem; color: rgba(255,255,255,0.22); letter-spacing: 0.08em;
+    }
+
+    .scroll-arrow { display: inline-block; animation: arrowPulse 1.6s ease-in-out infinite; }
+    @keyframes arrowPulse { 0%,100% { transform: translateX(0); } 50% { transform: translateX(7px); } }
+
+    .services__track {
+      display: flex; align-items: center;
+      gap: clamp(1.5rem,3vw,2.5rem);
+      padding-inline: clamp(1.25rem, 5vw, 5vw);
+      will-change: transform;
+      height: 100%;
+    }
+
+    /* Intro panel */
+    .services__intro {
+      flex-shrink: 0;
+      width: min(90vw, 460px);
+      padding-right: clamp(2rem, 4vw, 4rem);
+    }
+
+    .services__intro-eyebrow {
+      display: block; font-size: 0.7rem; font-weight: 600;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--clr-accent); margin-bottom: 1.25rem;
+    }
+
+    .services__intro-heading {
       font-family: var(--ff-display);
-      font-size: 1.3rem;
-      font-weight: 600;
-      color: var(--clr-primary-dk);
-      margin-bottom: 0.6rem;
+      font-size: clamp(3rem, 5.5vw, 5rem);
+      font-weight: 600; line-height: 1.0;
+      letter-spacing: -0.025em; color: #fff;
+      margin-bottom: 1.25rem;
     }
 
-    .service-card p {
-      font-size: 0.92rem;
-      color: var(--clr-text-md);
-      line-height: 1.7;
+    .services__intro-sub {
+      font-size: 0.95rem; color: rgba(255,255,255,0.45);
+      line-height: 1.75; margin-bottom: 2.5rem; max-width: 330px;
+    }
+
+    /* Progress dots */
+    .services__progress { display: flex; gap: 7px; align-items: center; }
+
+    .progress-dot {
+      height: 8px; border-radius: 999px;
+      background: rgba(255,255,255,0.15);
+      transition: background 0.4s, width 0.4s;
+      width: 8px;
+    }
+
+    .progress-dot.active { background: var(--clr-accent); width: 24px; }
+
+    /* Service panel */
+    .service-panel {
+      flex-shrink: 0;
+      width: min(82vw, 370px);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px;
+      padding: clamp(1.75rem, 3.5vw, 2.5rem);
+      display: flex; flex-direction: column; gap: 1.1rem;
+      position: relative; overflow: hidden;
+      height: 68vh; max-height: 500px;
+      transition: border-color 0.4s;
+    }
+
+    .service-panel:hover { border-color: rgba(255,255,255,0.16); }
+
+    .service-panel::after {
+      content: ''; position: absolute; inset: 0; border-radius: 20px;
+      background: linear-gradient(135deg, rgba(196,113,75,0.06) 0%, transparent 55%);
+      opacity: 0; transition: opacity 0.5s;
+    }
+
+    .service-panel:hover::after { opacity: 1; }
+
+    .service-panel__num {
+      font-family: var(--ff-display); font-size: clamp(6rem,12vw,11rem);
+      font-weight: 700; color: rgba(255,255,255,0.03); line-height: 1;
+      position: absolute; bottom: -0.5rem; right: 1rem;
+      pointer-events: none; user-select: none;
+    }
+
+    .service-panel__icon { font-size: 2rem; line-height: 1; display: block; }
+
+    .service-panel__name {
+      font-family: var(--ff-display);
+      font-size: clamp(1.4rem, 2.5vw, 1.9rem);
+      font-weight: 600; color: #fff; line-height: 1.15;
+    }
+
+    .service-panel__desc {
+      font-size: 0.9rem; color: rgba(255,255,255,0.48);
+      line-height: 1.75; flex: 1;
+    }
+
+    .service-panel__pill {
+      display: inline-flex; align-self: flex-start;
+      padding: 0.38rem 1rem;
+      background: rgba(196,113,75,0.12);
+      border: 1px solid rgba(196,113,75,0.25);
+      border-radius: 999px; font-size: 0.7rem;
+      font-weight: 600; color: var(--clr-accent-lt);
+      letter-spacing: 0.06em; text-transform: uppercase;
     }
 
     /* ============================================================
-       PHILOSOPHY BANNER
+       PHILOSOPHY — Marquee
     ============================================================ */
     .philosophy {
-      background: linear-gradient(135deg, var(--clr-primary-dk) 0%, #2A4A40 100%);
-      padding-block: clamp(3rem, 6vw, 5rem);
-      position: relative;
+      background: var(--clr-accent);
       overflow: hidden;
+      padding-block: clamp(3.5rem, 6vw, 5.5rem);
+      position: relative;
     }
 
     .philosophy::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image: radial-gradient(circle at 20% 50%, rgba(255,255,255,0.04) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 20%, rgba(201, 153, 62, 0.12) 0%, transparent 50%);
+      content: ''; position: absolute; inset: 0;
+      background-image: repeating-linear-gradient(-45deg, transparent, transparent 12px, rgba(255,255,255,0.04) 12px, rgba(255,255,255,0.04) 13px);
+      pointer-events: none;
     }
 
-    .philosophy__inner {
-      position: relative;
-      z-index: 1;
-      text-align: center;
-      max-width: 800px;
-      margin-inline: auto;
+    .philosophy__label {
+      display: block; text-align: center;
+      font-size: 0.7rem; font-weight: 600; letter-spacing: 0.14em;
+      text-transform: uppercase; color: rgba(255,255,255,0.45);
+      margin-bottom: 2rem; position: relative; z-index: 1;
     }
 
-    .philosophy__quote {
+    .marquee-wrap { position: relative; z-index: 1; }
+    .marquee-row { overflow: hidden; }
+    .marquee-row + .marquee-row { margin-top: 0.3rem; }
+
+    .marquee-track {
+      display: inline-flex; gap: 0;
+      white-space: nowrap; will-change: transform;
+    }
+
+    .marquee-item {
+      display: inline-flex; align-items: center;
+      gap: 1.5rem; padding-right: 1.5rem;
       font-family: var(--ff-display);
-      font-size: clamp(1.6rem, 3.5vw, 2.8rem);
-      font-style: italic;
-      font-weight: 400;
-      color: #fff;
-      line-height: 1.35;
-      margin-bottom: 1.5rem;
+      font-size: clamp(2rem, 5vw, 4.5rem);
+      font-weight: 600; font-style: italic;
+      color: rgba(255,255,255,0.85); line-height: 1.1; flex-shrink: 0;
     }
 
-    .philosophy__quote strong {
-      font-style: normal;
-      font-weight: 600;
-      color: var(--clr-accent-lt);
-    }
-
-    .philosophy__attr {
-      font-size: 0.85rem;
-      color: rgba(255,255,255,0.55);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
+    .marquee-item .sep { font-style: normal; color: rgba(255,255,255,0.25); font-size: 0.5em; transform: translateY(-0.15em); }
 
     /* ============================================================
        RESOURCES
     ============================================================ */
-    .resources { background: var(--clr-bg-alt); }
-
-    .resources__grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
+    .resources {
+      background: var(--clr-bg);
+      padding-block: clamp(5rem, 10vw, 9rem);
     }
 
-    .resource-category {
-      background: var(--clr-surface);
-      border-radius: var(--r-md);
-      overflow: hidden;
-      border: 1px solid var(--clr-border);
-      transition: box-shadow var(--dur) var(--ease), transform var(--dur) var(--ease-spring);
+    .resources__inner {
+      max-width: var(--max-w);
+      margin-inline: auto;
+      padding-inline: clamp(1.25rem, 5vw, 2.5rem);
     }
 
-    .resource-category:hover {
-      box-shadow: var(--shadow-md);
-      transform: translateY(-3px);
+    .resources__head {
+      display: grid; grid-template-columns: 1.2fr 1fr;
+      gap: 3rem; align-items: end;
+      margin-bottom: clamp(3rem, 6vw, 5rem);
+      padding-bottom: clamp(2rem, 4vw, 3rem);
+      border-bottom: 1px solid var(--clr-border);
     }
 
-    .resource-category__header {
-      padding: 1.25rem 1.5rem;
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
+    .resources__head-left .label { display: block; margin-bottom: 1rem; }
 
-    .resource-category--books .resource-category__header { background: linear-gradient(135deg, #F3EDE4, #E8D5C0); }
-    .resource-category--orgs  .resource-category__header { background: linear-gradient(135deg, #E8F0ED, #D0E4DC); }
-    .resource-category--online .resource-category__header { background: linear-gradient(135deg, #EEE8F5, #DDD0EC); }
-    .resource-category--tips  .resource-category__header { background: linear-gradient(135deg, #F5EDE6, #ECD5C4); }
-
-    .resource-category__icon {
-      font-size: 1.6rem;
-      line-height: 1;
-    }
-
-    .resource-category__title {
+    .resources__heading {
       font-family: var(--ff-display);
-      font-size: 1.2rem;
-      font-weight: 600;
-      color: var(--clr-primary-dk);
+      font-size: clamp(2.5rem, 5vw, 4.2rem);
+      font-weight: 600; color: var(--clr-primary-dk);
+      line-height: 1.05; letter-spacing: -0.02em;
     }
 
-    .resource-category__list {
-      padding: 1.25rem 1.5rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.85rem;
+    .resources__head-right p { font-size: 1rem; color: var(--clr-text-md); line-height: 1.75; }
+
+    .resources__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+
+    .resource-card {
+      background: var(--clr-surface); border-radius: 20px;
+      border: 1px solid var(--clr-border); overflow: hidden;
+      transition: box-shadow 0.3s, transform 0.3s;
     }
 
-    .resource-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.6rem;
+    .resource-card:hover { box-shadow: 0 16px 48px rgba(92,122,110,0.14); transform: translateY(-4px); }
+
+    .resource-card__hd {
+      padding: 1.75rem 2rem 1.5rem;
+      display: flex; align-items: flex-start; gap: 1rem;
+      border-bottom: 1px solid var(--clr-border);
     }
 
-    .resource-item__dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--clr-accent);
-      flex-shrink: 0;
-      margin-top: 0.55rem;
+    .resource-card__icon {
+      width: 46px; height: 46px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem; flex-shrink: 0;
     }
 
-    .resource-item__text {
-      font-size: 0.9rem;
-      color: var(--clr-text-md);
-      line-height: 1.55;
+    .resource-card--books .resource-card__icon  { background: rgba(201,153,62,0.12); }
+    .resource-card--orgs .resource-card__icon   { background: rgba(92,122,110,0.12); }
+    .resource-card--online .resource-card__icon { background: rgba(107,90,152,0.12); }
+    .resource-card--tips .resource-card__icon   { background: rgba(196,113,75,0.12); }
+
+    .resource-card__title-wrap h3 {
+      font-family: var(--ff-display); font-size: 1.2rem;
+      font-weight: 600; color: var(--clr-primary-dk);
     }
 
-    .resource-item__text strong {
-      display: block;
-      color: var(--clr-text);
-      font-weight: 600;
-      font-size: 0.88rem;
+    .resource-card__subtitle { font-size: 0.75rem; color: var(--clr-text-lt); margin-top: 0.2rem; }
+
+    .resource-card__list {
+      padding: 1.5rem 2rem 2rem;
+      display: flex; flex-direction: column; gap: 1rem;
     }
+
+    .resource-entry { display: flex; gap: 0.85rem; align-items: flex-start; }
+
+    .resource-entry__num {
+      font-family: var(--ff-display); font-size: 0.9rem; font-weight: 700;
+      color: var(--clr-accent); line-height: 1.5; flex-shrink: 0; min-width: 1.2rem;
+    }
+
+    .resource-entry__text strong { display: block; font-size: 0.88rem; font-weight: 600; color: var(--clr-text); margin-bottom: 0.15rem; }
+    .resource-entry__text span { font-size: 0.82rem; color: var(--clr-text-lt); line-height: 1.55; }
 
     /* ============================================================
-       CONTACT
+       CONTACT — Split bg
     ============================================================ */
-    .contact { background: var(--clr-bg-alt); }
-
-    .contact__grid {
-      display: grid;
-      grid-template-columns: 1fr 1.2fr;
-      gap: clamp(3rem, 6vw, 5rem);
-      align-items: start;
+    .contact {
+      position: relative;
+      padding-block: clamp(5rem, 10vw, 9rem);
+      overflow: hidden;
+      background: var(--clr-bg-alt);
     }
 
-    .contact__info .label { display: block; margin-bottom: 0.75rem; }
-    .contact__info h2 { margin-bottom: 1rem; }
-    .contact__info p { color: var(--clr-text-md); margin-bottom: 2rem; line-height: 1.75; }
-
-    .contact__details {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
+    .contact::before {
+      content: ''; position: absolute;
+      top: 0; left: 0; width: 44%; bottom: 0;
+      background: #1A2E28; z-index: 0;
     }
 
-    .contact__detail {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
+    .contact__inner {
+      position: relative; z-index: 1;
+      max-width: var(--max-w); margin-inline: auto;
+      padding-inline: clamp(1.25rem, 5vw, 2.5rem);
+      display: grid; grid-template-columns: 1fr 1.25fr;
+      gap: clamp(3rem, 7vw, 6rem); align-items: start;
     }
+
+    .contact__left { padding-top: 0.5rem; }
+
+    .contact__eyebrow {
+      display: block; font-size: 0.7rem; font-weight: 600;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: rgba(255,255,255,0.38); margin-bottom: 1.25rem;
+    }
+
+    .contact__heading {
+      font-family: var(--ff-display);
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      font-weight: 600; color: #fff; line-height: 0.95;
+      letter-spacing: -0.025em; margin-bottom: 1.75rem;
+    }
+
+    .contact__heading em { display: block; font-style: italic; color: var(--clr-accent-lt); }
+
+    .contact__blurb {
+      font-size: 0.97rem; color: rgba(255,255,255,0.48);
+      line-height: 1.8; margin-bottom: 2.5rem; max-width: 310px;
+    }
+
+    .contact__details { display: flex; flex-direction: column; gap: 0.9rem; }
+
+    .contact__detail { display: flex; align-items: center; gap: 0.85rem; }
 
     .contact__detail-icon {
-      width: 44px;
-      height: 44px;
-      border-radius: var(--r-md);
-      background: var(--clr-surface);
-      border: 1px solid var(--clr-border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      color: var(--clr-primary);
+      width: 36px; height: 36px; border-radius: 10px;
+      background: rgba(255,255,255,0.06);
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,0.6); flex-shrink: 0;
     }
 
-    .contact__detail-icon svg { width: 18px; height: 18px; }
+    .contact__detail-icon svg { width: 15px; height: 15px; }
+    .contact__detail-label { font-size: 0.68rem; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(255,255,255,0.28); }
+    .contact__detail-value { font-size: 0.9rem; color: rgba(255,255,255,0.72); font-weight: 500; }
 
-    .contact__detail-text {
-      font-size: 0.9rem;
+    .contact__form-wrap {
+      background: #fff; border-radius: 24px;
+      padding: clamp(2rem, 4vw, 2.75rem);
+      box-shadow: 0 24px 80px rgba(0,0,0,0.12);
     }
 
-    .contact__detail-label {
-      color: var(--clr-text-lt);
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
+    .contact__form-title {
+      font-family: var(--ff-display); font-size: 1.4rem;
+      font-weight: 600; color: var(--clr-primary-dk); margin-bottom: 1.5rem;
     }
 
-    .contact__detail-value {
-      color: var(--clr-primary-dk);
-      font-weight: 500;
-    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
 
-    /* Contact Form */
-    .contact__form {
-      background: var(--clr-surface);
-      border: 1px solid var(--clr-border);
-      border-radius: var(--r-lg);
-      padding: clamp(1.75rem, 4vw, 2.5rem);
-      box-shadow: var(--shadow-sm);
-    }
-
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-    }
-
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      gap: 0.45rem;
-      margin-bottom: 1.1rem;
-    }
+    .form-group { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1rem; }
 
     .form-group label {
-      font-size: 0.82rem;
-      font-weight: 600;
-      color: var(--clr-text);
-      letter-spacing: 0.02em;
+      font-size: 0.76rem; font-weight: 600; color: var(--clr-text-lt);
+      letter-spacing: 0.04em; text-transform: uppercase;
     }
 
     .form-group input,
     .form-group select,
     .form-group textarea {
-      width: 100%;
-      padding: 0.75rem 1rem;
-      background: var(--clr-bg);
-      border: 1.5px solid var(--clr-border);
-      border-radius: var(--r-sm);
-      font-family: var(--ff-body);
-      font-size: 0.92rem;
-      color: var(--clr-text);
+      width: 100%; padding: 0.8rem 1rem;
+      background: var(--clr-bg); border: 1.5px solid var(--clr-border);
+      border-radius: 10px; font-family: var(--ff-body);
+      font-size: 0.92rem; color: var(--clr-text);
       transition: border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
-      appearance: none;
-      -webkit-appearance: none;
+      appearance: none; -webkit-appearance: none;
     }
 
     .form-group select {
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right 1rem center;
-      padding-right: 2.5rem;
+      background-repeat: no-repeat; background-position: right 1rem center; padding-right: 2.5rem;
     }
 
     .form-group input:focus,
     .form-group select:focus,
     .form-group textarea:focus {
-      outline: none;
-      border-color: var(--clr-primary);
-      box-shadow: 0 0 0 3px rgba(92, 122, 110, 0.12);
+      outline: none; border-color: var(--clr-primary);
+      box-shadow: 0 0 0 3px rgba(92,122,110,0.12);
     }
 
-    .form-group textarea { resize: vertical; min-height: 120px; }
+    .form-group textarea { resize: vertical; min-height: 110px; }
+    .form-group input::placeholder, .form-group textarea::placeholder { color: var(--clr-text-lt); }
 
-    .form-group input::placeholder,
-    .form-group textarea::placeholder {
-      color: var(--clr-text-lt);
-    }
-
-    .form__submit {
-      width: 100%;
-      justify-content: center;
-      font-size: 0.95rem;
-      padding: 0.95rem;
-    }
+    .form__submit { width: 100%; justify-content: center; font-size: 0.95rem; padding: 0.95rem; }
 
     .form__success {
-      display: none;
-      text-align: center;
-      padding: 2rem;
-      color: var(--clr-primary-dk);
+      display: none; text-align: center; padding: 2rem; color: var(--clr-primary-dk);
     }
 
-    .form__success-icon {
-      font-size: 2.5rem;
-      margin-bottom: 0.75rem;
-    }
-
-    .form__success h3 {
-      font-family: var(--ff-display);
-      font-size: 1.5rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .form__success p {
-      font-size: 0.9rem;
-      color: var(--clr-text-md);
-    }
+    .form__success-icon { font-size: 2.5rem; margin-bottom: 0.75rem; }
+    .form__success h3 { font-family: var(--ff-display); font-size: 1.5rem; margin-bottom: 0.5rem; }
+    .form__success p { font-size: 0.9rem; color: var(--clr-text-md); }
 
     /* ============================================================
        FOOTER
     ============================================================ */
     .footer {
-      background: #1A2E28;
-      color: rgba(255,255,255,0.75);
-      padding-block: clamp(3rem, 5vw, 4.5rem);
+      background: #0F1E1A;
+      padding-block: clamp(3.5rem, 6vw, 5rem);
+      position: relative;
+      overflow: hidden;
     }
 
-    .footer__grid {
-      display: grid;
-      grid-template-columns: 1.5fr 1fr 1fr;
-      gap: 3rem;
-      padding-bottom: 2.5rem;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-      margin-bottom: 2rem;
-    }
-
-    .footer__brand-name {
+    .footer__ghost {
+      position: absolute; bottom: -1rem; right: -1rem;
       font-family: var(--ff-display);
-      font-size: 1.5rem;
-      font-weight: 600;
-      color: #fff;
-      margin-bottom: 0.75rem;
+      font-size: clamp(5rem, 13vw, 15rem);
+      font-weight: 700; color: rgba(255,255,255,0.018);
+      white-space: nowrap; pointer-events: none; user-select: none; line-height: 1;
     }
 
+    .footer__inner {
+      max-width: var(--max-w); margin-inline: auto;
+      padding-inline: clamp(1.25rem, 5vw, 2.5rem);
+      position: relative; z-index: 1;
+    }
+
+    .footer__main {
+      display: grid; grid-template-columns: 1.8fr 1fr 1fr; gap: 3rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid rgba(255,255,255,0.055);
+      margin-bottom: 2.5rem;
+    }
+
+    .footer__brand-name { font-family: var(--ff-display); font-size: 1.6rem; font-weight: 600; color: #fff; margin-bottom: 0.75rem; }
     .footer__brand-name span { color: var(--clr-accent-lt); }
 
-    .footer__tagline {
-      font-size: 0.88rem;
-      line-height: 1.7;
-      max-width: 280px;
-      margin-bottom: 1.5rem;
-    }
+    .footer__tagline { font-size: 0.88rem; color: rgba(255,255,255,0.32); line-height: 1.7; max-width: 270px; margin-bottom: 1.75rem; }
 
-    .footer__social {
-      display: flex;
-      gap: 0.75rem;
-    }
+    .footer__social { display: flex; gap: 0.6rem; }
 
     .footer__social-link {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.08);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: rgba(255,255,255,0.75);
-      transition: background var(--dur) var(--ease), color var(--dur) var(--ease), transform var(--dur) var(--ease-spring);
+      width: 36px; height: 36px; border-radius: 50%;
+      background: rgba(255,255,255,0.06);
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,0.5);
+      transition: background 0.2s, color 0.2s, transform 0.2s;
     }
 
-    .footer__social-link:hover {
-      background: var(--clr-accent);
-      color: #fff;
-      transform: translateY(-2px);
-    }
+    .footer__social-link:hover { background: var(--clr-accent); color: #fff; transform: translateY(-2px); }
+    .footer__social-link svg { width: 15px; height: 15px; }
 
-    .footer__social-link svg { width: 16px; height: 16px; }
+    .footer__col-title { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.22); margin-bottom: 1.25rem; }
 
-    .footer__col-title {
-      font-size: 0.78rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.45);
-      margin-bottom: 1.25rem;
-    }
-
-    .footer__links {
-      display: flex;
-      flex-direction: column;
-      gap: 0.7rem;
-    }
-
-    .footer__links a {
-      font-size: 0.9rem;
-      color: rgba(255,255,255,0.65);
-      transition: color var(--dur) var(--ease);
-    }
-
+    .footer__links { display: flex; flex-direction: column; gap: 0.65rem; }
+    .footer__links a { font-size: 0.9rem; color: rgba(255,255,255,0.48); transition: color 0.2s; }
     .footer__links a:hover { color: #fff; }
 
-    .footer__bottom {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-
-    .footer__copy {
-      font-size: 0.82rem;
-      color: rgba(255,255,255,0.4);
-    }
-
-    .footer__love {
-      font-size: 0.82rem;
-      color: rgba(255,255,255,0.4);
-    }
-
+    .footer__bottom { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+    .footer__copy, .footer__love { font-size: 0.8rem; color: rgba(255,255,255,0.25); }
     .footer__love span { color: var(--clr-accent-lt); }
-
-    /* ============================================================
-       SCROLL REVEAL ANIMATION
-    ============================================================ */
-    .reveal {
-      opacity: 0;
-      transform: translateY(28px);
-      transition: opacity 0.65s var(--ease), transform 0.65s var(--ease);
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .reveal-delay-1 { transition-delay: 0.1s; }
-    .reveal-delay-2 { transition-delay: 0.2s; }
-    .reveal-delay-3 { transition-delay: 0.3s; }
-    .reveal-delay-4 { transition-delay: 0.4s; }
-
-    /* ============================================================
-       SKIP LINK (Accessibility)
-    ============================================================ */
-    .skip-link {
-      position: absolute;
-      top: -999px;
-      left: 1rem;
-      padding: 0.75rem 1.25rem;
-      background: var(--clr-accent);
-      color: #fff;
-      border-radius: var(--r-sm);
-      font-weight: 600;
-      font-size: 0.9rem;
-      z-index: 999;
-      transition: top 0.2s;
-    }
-
-    .skip-link:focus { top: 1rem; }
 
     /* ============================================================
        RESPONSIVE
     ============================================================ */
-    @media (max-width: 900px) {
-      .about__grid { grid-template-columns: 1fr; }
-      .about__image-wrap { max-width: 380px; margin-inline: auto; }
-      .contact__grid { grid-template-columns: 1fr; }
-      .footer__grid { grid-template-columns: 1fr 1fr; }
+    @media (max-width: 960px) {
+      .about__body-grid { grid-template-columns: 1fr; }
+      .resources__head { grid-template-columns: 1fr; }
+      .resources__grid { grid-template-columns: 1fr; }
+      .contact::before { display: none; }
+      .contact__inner { grid-template-columns: 1fr; }
+      .contact__heading { color: var(--clr-primary-dk); }
+      .contact__eyebrow { color: var(--clr-accent); }
+      .contact__blurb { color: var(--clr-text-md); }
+      .contact__detail-icon { background: var(--clr-surface); color: var(--clr-primary); border: 1px solid var(--clr-border); }
+      .contact__detail-label { color: var(--clr-text-lt); }
+      .contact__detail-value { color: var(--clr-primary-dk); }
+      .footer__main { grid-template-columns: 1fr 1fr; }
     }
 
     @media (max-width: 680px) {
@@ -1376,20 +1293,25 @@
       .nav__cta { display: none; }
       .nav__burger { display: flex; }
       .form-row { grid-template-columns: 1fr; }
-      .footer__grid { grid-template-columns: 1fr; gap: 2rem; }
-      .hero__stats { gap: 1rem; }
-      .hero__stat-divider { display: none; }
+      .footer__main { grid-template-columns: 1fr; gap: 2rem; }
+    }
+
+    @media (max-width: 760px) {
+      .services__sticky { height: auto; padding-block: 4rem 3rem; }
+      .services__track { flex-direction: column; align-items: stretch; padding: 0 1.25rem; gap: 1.25rem; }
+      .service-panel { height: auto; max-height: none; width: 100%; }
+      .services__bar { display: none; }
     }
 
     @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-      }
+      *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
       html { scroll-behavior: auto; }
+      .word-inner { transform: none !important; }
+      .flora { opacity: 1 !important; }
     }
   </style>
+
+
 </head>
 <body>
 
@@ -1544,307 +1466,294 @@
     <!-- ============================================================
          ABOUT
     ============================================================ -->
-    <section class="about section" id="about" aria-labelledby="about-heading">
-      <div class="container">
-        <div class="about__grid">
-          <!-- Image Column -->
-          <div class="about__image-wrap reveal">
-            <div class="about__image-frame" role="img" aria-label="Deepa Singh, Special Needs Educator">
-              <div class="about__avatar">
-                <div class="about__avatar-circle" aria-hidden="true">DS</div>
-                <p class="about__avatar-text">Deepa Singh</p>
-              </div>
-            </div>
-            <div class="about__image-badge" aria-label="Over 8 years of experience">
-              <span class="about__image-badge-num">8+</span>
-              <span class="about__image-badge-label">Years of dedicated service</span>
-            </div>
-          </div>
+    <section class="about" id="about" aria-labelledby="about-heading">
+      <div class="about__inner">
 
-          <!-- Content Column -->
-          <div class="about__content">
-            <span class="label reveal">About Me</span>
-            <h2 class="display-lg reveal reveal-delay-1" id="about-heading">
-              Nurturing Every Child's Potential
-            </h2>
-            <p class="reveal reveal-delay-2">
-              Hello! I'm <strong>Deepa Singh</strong>, a passionate and dedicated special needs educator with a Bachelor of Education (B.Ed.) and over 8 years of hands-on experience working with children across the spectrum of learning and developmental differences.
-            </p>
-            <p class="reveal reveal-delay-2">
-              My journey began with a simple belief: <em>every child deserves to be seen, heard, and celebrated for who they are.</em> I specialize in creating individualized, inclusive learning environments where children with autism, Down syndrome, dyslexia, ADHD, cerebral palsy, and other differently-abled conditions can thrive.
-            </p>
-            <p class="reveal reveal-delay-3">
-              I work closely with families as partners — because the most powerful changes happen when educators and caregivers move together with understanding, patience, and love.
-            </p>
+        <span class="about__eyebrow label">About Me</span>
 
-            <div class="about__quals reveal reveal-delay-3" role="list" aria-label="Qualifications and specializations">
-              <div class="about__qual" role="listitem">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                B.Ed. Qualified
-              </div>
-              <div class="about__qual" role="listitem">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                Autism Specialist
-              </div>
-              <div class="about__qual" role="listitem">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                Early Intervention
-              </div>
-              <div class="about__qual" role="listitem">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                Inclusive Education
-              </div>
-              <div class="about__qual" role="listitem">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                Parent Counseling
-              </div>
-              <div class="about__qual" role="listitem">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                IEP Planning
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+        <div class="about__heading-wrap">
+          <!-- Flora inside heading-wrap so they're positioned relative to it -->
+          <svg class="flora flora--1" viewBox="0 0 60 60" fill="none" aria-hidden="true">
+            <g transform="translate(30,30)">
+              <ellipse cx="0" cy="-13" rx="6" ry="11" fill="#C4714B" opacity="0.85" transform="rotate(0)"/>
+              <ellipse cx="0" cy="-13" rx="6" ry="11" fill="#C4714B" opacity="0.85" transform="rotate(72)"/>
+              <ellipse cx="0" cy="-13" rx="6" ry="11" fill="#C4714B" opacity="0.85" transform="rotate(144)"/>
+              <ellipse cx="0" cy="-13" rx="6" ry="11" fill="#C4714B" opacity="0.85" transform="rotate(216)"/>
+              <ellipse cx="0" cy="-13" rx="6" ry="11" fill="#C4714B" opacity="0.85" transform="rotate(288)"/>
+              <circle cx="0" cy="0" r="7" fill="#C9993E"/>
+              <circle cx="0" cy="0" r="3" fill="#9A4F2E" opacity="0.4"/>
+            </g>
+          </svg>
+          <svg class="flora flora--2" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+            <path d="M20 1 C20 1 22 14 28 20 C22 26 20 39 20 39 C20 39 18 26 12 20 C18 14 20 1 20 1Z" fill="#5C7A6E" opacity="0.8"/>
+            <path d="M1 20 C1 20 14 18 20 12 C26 18 39 20 39 20 C39 20 26 22 20 28 C14 22 1 20 1 20Z" fill="#5C7A6E" opacity="0.8"/>
+            <circle cx="20" cy="20" r="3" fill="#8FB5A8"/>
+          </svg>
+          <svg class="flora flora--3" viewBox="0 0 32 52" fill="none" aria-hidden="true">
+            <path d="M16 48 C16 48 3 36 3 21 C3 8 16 4 16 4 C16 4 29 8 29 21 C29 36 16 48 16 48Z" fill="#8FB5A8" opacity="0.85"/>
+            <line x1="16" y1="6" x2="16" y2="48" stroke="#5C7A6E" stroke-width="1.2" opacity="0.6"/>
+            <path d="M16 18 C12 22 7 24 4 24" stroke="#5C7A6E" stroke-width="1" opacity="0.5"/>
+            <path d="M16 27 C12 31 7 33 4 33" stroke="#5C7A6E" stroke-width="1" opacity="0.5"/>
+            <path d="M16 18 C20 22 25 24 28 24" stroke="#5C7A6E" stroke-width="1" opacity="0.5"/>
+            <path d="M16 27 C20 31 25 33 28 33" stroke="#5C7A6E" stroke-width="1" opacity="0.5"/>
+          </svg>
+          <svg class="flora flora--4" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+            <line x1="18" y1="2" x2="18" y2="34" stroke="#C9993E" stroke-width="2" stroke-linecap="round"/>
+            <line x1="2" y1="18" x2="34" y2="18" stroke="#C9993E" stroke-width="2" stroke-linecap="round"/>
+            <line x1="6" y1="6" x2="30" y2="30" stroke="#C9993E" stroke-width="2" stroke-linecap="round"/>
+            <line x1="30" y1="6" x2="6" y2="30" stroke="#C9993E" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="18" cy="18" r="3" fill="#C9993E"/>
+          </svg>
+          <svg class="flora flora--5" viewBox="0 0 50 50" fill="none" aria-hidden="true">
+            <g transform="translate(25,25)">
+              <ellipse cx="0" cy="-10" rx="5" ry="9" fill="#C9993E" opacity="0.7" transform="rotate(0)"/>
+              <ellipse cx="0" cy="-10" rx="5" ry="9" fill="#C9993E" opacity="0.7" transform="rotate(90)"/>
+              <ellipse cx="0" cy="-10" rx="5" ry="9" fill="#C9993E" opacity="0.7" transform="rotate(180)"/>
+              <ellipse cx="0" cy="-10" rx="5" ry="9" fill="#C9993E" opacity="0.7" transform="rotate(270)"/>
+              <circle cx="0" cy="0" r="6" fill="#8FB5A8"/>
+            </g>
+          </svg>
+          <svg class="flora flora--6" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+            <circle cx="14" cy="6" r="3" fill="#C4714B" opacity="0.65"/>
+            <circle cx="6" cy="19" r="2.5" fill="#C4714B" opacity="0.45"/>
+            <circle cx="22" cy="19" r="2" fill="#C4714B" opacity="0.35"/>
+            <circle cx="14" cy="14" r="1.5" fill="#C4714B" opacity="0.25"/>
+          </svg>
 
-    <!-- ============================================================
-         SERVICES
-    ============================================================ -->
-    <section class="services section" id="services" aria-labelledby="services-heading">
-      <div class="container">
-        <header class="section__head">
-          <span class="label reveal">What I Offer</span>
-          <h2 class="display-lg reveal reveal-delay-1" id="services-heading">
-            Holistic Support for Every Child
+          <h2 class="about__heading" id="about-heading" aria-label="Nurturing Every Child's Potential">
+            <span class="word"><span class="word-inner">Nurturing</span></span>
+            <span class="word is-accent"><span class="word-inner">Every</span></span><br>
+            <span class="word"><span class="word-inner">Child's</span></span>
+            <span class="word"><span class="word-inner">Potential</span></span>
           </h2>
-          <p class="body-lg reveal reveal-delay-2" style="max-width:600px; margin-top:0.75rem;">
-            From one-on-one teaching sessions to family workshops, each service is shaped around the child's unique needs and strengths.
-          </p>
-        </header>
+        </div>
 
-        <div class="services__grid" role="list">
+        <div class="about__body-grid">
+          <div class="about__text">
+            <p>Hello! I'm <strong>Deepa Singh</strong>, a passionate and dedicated special needs educator with a Bachelor of Education (B.Ed.) and over 8 years of hands-on experience working with children across the spectrum of learning and developmental differences.</p>
+            <p>My journey began with a simple belief: <em>every child deserves to be seen, heard, and celebrated for who they are.</em> I specialize in creating individualized, inclusive learning environments where children with autism, Down syndrome, dyslexia, ADHD, cerebral palsy, and other differently-abled conditions can thrive.</p>
+            <p>I work closely with families as partners — because the most powerful changes happen when educators and caregivers move together with understanding, patience, and love.</p>
+          </div>
 
-          <article class="service-card reveal" role="listitem">
-            <div class="service-card__icon" aria-hidden="true">🧩</div>
-            <h3>Individualized Education Plans (IEP)</h3>
-            <p>Crafting personalized learning roadmaps tailored to each child's abilities, challenges, and goals — in collaboration with parents and school teams.</p>
+          <div>
+            <span class="about__side-label">Expertise &amp; Qualifications</span>
+            <div class="quals-ticker" aria-label="Qualifications">
+              <div class="quals-ticker__track" id="quals-track" aria-hidden="true">
+                <span class="quals-ticker__item">B.Ed. Qualified <span class="quals-sep">✦</span></span>
+                <span class="quals-ticker__item">Autism Specialist <span class="quals-sep">✦</span></span>
+                <span class="quals-ticker__item">Early Intervention <span class="quals-sep">✦</span></span>
+                <span class="quals-ticker__item">Inclusive Education <span class="quals-sep">✦</span></span>
+                <span class="quals-ticker__item">Parent Counseling <span class="quals-sep">✦</span></span>
+                <span class="quals-ticker__item">IEP Planning <span class="quals-sep">✦</span></span>
+                <span class="quals-ticker__item">Speech Support <span class="quals-sep">✦</span></span>
+                <span class="quals-ticker__item">School Consulting <span class="quals-sep">✦</span></span>
+              </div>
+            </div>
+            <div class="about__stats" role="list">
+              <div class="about__stat" role="listitem">
+                <span class="about__stat-num" data-target="8" data-suffix="+">8+</span>
+                <span class="about__stat-label">Years Experience</span>
+              </div>
+              <div class="about__stat" role="listitem">
+                <span class="about__stat-num" data-target="200" data-suffix="+">200+</span>
+                <span class="about__stat-label">Children Guided</span>
+              </div>
+              <div class="about__stat" role="listitem">
+                <span class="about__stat-num" data-target="50" data-suffix="+">50+</span>
+                <span class="about__stat-label">Families Supported</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         SERVICES — Horizontal scroll
+    ============================================================ -->
+    <section class="services" id="services" aria-labelledby="services-heading">
+      <div class="services__sticky" id="services-sticky">
+        <div class="services__bar" aria-hidden="true">
+          <div class="services__bar-left">
+            <span class="services__bar-tag">What I Offer</span>
+            <span class="services__bar-divider"></span>
+            <span class="services__bar-title">Scroll to explore</span>
+          </div>
+          <div class="services__scroll-cue">DRAG <span class="scroll-arrow">&#8594;</span></div>
+        </div>
+        <div class="services__track" id="services-track" role="list">
+          <div class="services__intro" aria-hidden="true">
+            <span class="services__intro-eyebrow">What I Offer</span>
+            <h2 class="services__intro-heading" id="services-heading">Holistic<br>Support<br><em style="font-style:italic;color:var(--clr-accent-lt)">for Every<br>Child</em></h2>
+            <p class="services__intro-sub">From one-on-one sessions to family workshops — each service is shaped around your child's unique needs.</p>
+            <div class="services__progress" id="services-progress">
+              <div class="progress-dot active"></div>
+              <div class="progress-dot"></div>
+              <div class="progress-dot"></div>
+              <div class="progress-dot"></div>
+              <div class="progress-dot"></div>
+              <div class="progress-dot"></div>
+            </div>
+          </div>
+
+          <article class="service-panel" role="listitem">
+            <span class="service-panel__num" aria-hidden="true">01</span>
+            <span class="service-panel__icon" aria-hidden="true">&#129513;</span>
+            <h3 class="service-panel__name">Individualized Education Plans</h3>
+            <p class="service-panel__desc">Crafting personalized learning roadmaps tailored to each child's abilities, challenges, and goals — in collaboration with parents and school teams.</p>
+            <span class="service-panel__pill">IEP Planning</span>
           </article>
 
-          <article class="service-card reveal reveal-delay-1" role="listitem">
-            <div class="service-card__icon" aria-hidden="true">🌱</div>
-            <h3>Early Childhood Intervention</h3>
-            <p>Early support is the most powerful support. I provide structured developmental activities for children from 2–8 years, building foundations for lifelong learning.</p>
+          <article class="service-panel" role="listitem">
+            <span class="service-panel__num" aria-hidden="true">02</span>
+            <span class="service-panel__icon" aria-hidden="true">&#127807;</span>
+            <h3 class="service-panel__name">Early Childhood Intervention</h3>
+            <p class="service-panel__desc">Early support is the most powerful support. Structured developmental activities for children from 2–8 years, building foundations for lifelong learning.</p>
+            <span class="service-panel__pill">Ages 2–8</span>
           </article>
 
-          <article class="service-card reveal reveal-delay-2" role="listitem">
-            <div class="service-card__icon" aria-hidden="true">💬</div>
-            <h3>Speech & Communication Support</h3>
-            <p>Using play-based and visual strategies to enhance verbal and non-verbal communication skills for children with autism, speech delays, and related conditions.</p>
+          <article class="service-panel" role="listitem">
+            <span class="service-panel__num" aria-hidden="true">03</span>
+            <span class="service-panel__icon" aria-hidden="true">&#128172;</span>
+            <h3 class="service-panel__name">Speech &amp; Communication Support</h3>
+            <p class="service-panel__desc">Using play-based and visual strategies to enhance verbal and non-verbal communication for children with autism, speech delays, and related conditions.</p>
+            <span class="service-panel__pill">Communication</span>
           </article>
 
-          <article class="service-card reveal reveal-delay-1" role="listitem">
-            <div class="service-card__icon" aria-hidden="true">🤝</div>
-            <h3>Parent & Family Workshops</h3>
-            <p>Empowering families with practical strategies, tools, and emotional support so that learning and growth continues at home — every single day.</p>
+          <article class="service-panel" role="listitem">
+            <span class="service-panel__num" aria-hidden="true">04</span>
+            <span class="service-panel__icon" aria-hidden="true">&#129309;</span>
+            <h3 class="service-panel__name">Parent &amp; Family Workshops</h3>
+            <p class="service-panel__desc">Empowering families with practical strategies, tools, and emotional support so that learning and growth continues at home — every single day.</p>
+            <span class="service-panel__pill">Family</span>
           </article>
 
-          <article class="service-card reveal reveal-delay-2" role="listitem">
-            <div class="service-card__icon" aria-hidden="true">📚</div>
-            <h3>Remedial & Learning Support</h3>
-            <p>Specialized teaching for children with dyslexia, dyscalculia, ADHD, and learning disabilities — making academic concepts accessible and enjoyable.</p>
+          <article class="service-panel" role="listitem">
+            <span class="service-panel__num" aria-hidden="true">05</span>
+            <span class="service-panel__icon" aria-hidden="true">&#128218;</span>
+            <h3 class="service-panel__name">Remedial &amp; Learning Support</h3>
+            <p class="service-panel__desc">Specialized teaching for children with dyslexia, dyscalculia, ADHD, and learning disabilities — making academic concepts accessible and enjoyable.</p>
+            <span class="service-panel__pill">Remedial</span>
           </article>
 
-          <article class="service-card reveal reveal-delay-3" role="listitem">
-            <div class="service-card__icon" aria-hidden="true">🏫</div>
-            <h3>School Inclusion Consulting</h3>
-            <p>Partnering with mainstream schools to build inclusive classrooms, train teachers, and ensure every differently-abled child belongs and thrives.</p>
+          <article class="service-panel" role="listitem">
+            <span class="service-panel__num" aria-hidden="true">06</span>
+            <span class="service-panel__icon" aria-hidden="true">&#127963;</span>
+            <h3 class="service-panel__name">School Inclusion Consulting</h3>
+            <p class="service-panel__desc">Partnering with mainstream schools to build inclusive classrooms, train teachers, and ensure every differently-abled child belongs and thrives.</p>
+            <span class="service-panel__pill">Schools</span>
           </article>
-
         </div>
       </div>
     </section>
 
     <!-- ============================================================
-         PHILOSOPHY BANNER
+         PHILOSOPHY — Dual marquee
     ============================================================ -->
     <section class="philosophy" aria-label="Teaching philosophy">
-      <div class="container philosophy__inner">
-        <blockquote>
-          <p class="philosophy__quote">
-            "The measure of a great educator is not what they teach, but <strong>who they help a child become.</strong>"
-          </p>
-          <footer class="philosophy__attr">— Deepa Singh's Teaching Philosophy</footer>
-        </blockquote>
+      <span class="philosophy__label">Teaching Philosophy</span>
+      <div class="marquee-wrap">
+        <div class="marquee-row">
+          <div class="marquee-track" id="marquee-1">
+            <span class="marquee-item">The measure of a great educator <span class="sep">&#10022;</span></span>
+            <span class="marquee-item">is not what they teach <span class="sep">&#10022;</span></span>
+            <span class="marquee-item">but who they help a child become <span class="sep">&#10022;</span></span>
+            <span class="marquee-item">The measure of a great educator <span class="sep">&#10022;</span></span>
+            <span class="marquee-item">is not what they teach <span class="sep">&#10022;</span></span>
+            <span class="marquee-item">but who they help a child become <span class="sep">&#10022;</span></span>
+          </div>
+        </div>
+        <div class="marquee-row">
+          <div class="marquee-track" id="marquee-2">
+            <span class="marquee-item">Every child is a universe waiting <span class="sep">&#10022;</span></span>
+            <span class="marquee-item">to be explored and celebrated <span class="sep">&#10022;</span></span>
+            <span class="marquee-item">with patience and love <span class="sep">&#10022;</span></span>
+            <span class="marquee-item">Every child is a universe waiting <span class="sep">&#10022;</span></span>
+            <span class="marquee-item">to be explored and celebrated <span class="sep">&#10022;</span></span>
+            <span class="marquee-item">with patience and love <span class="sep">&#10022;</span></span>
+          </div>
+        </div>
       </div>
     </section>
 
     <!-- ============================================================
          RESOURCES
     ============================================================ -->
-    <section class="resources section" id="resources" aria-labelledby="resources-heading">
-      <div class="container">
-        <header class="section__head">
-          <span class="label reveal">Parent Resource Hub</span>
-          <h2 class="display-lg reveal reveal-delay-1" id="resources-heading">
-            Guides to Support Your Child
-          </h2>
-          <p class="body-lg reveal reveal-delay-2" style="max-width:620px; margin-top:0.75rem;">
-            A curated collection of books, organizations, websites, and everyday tips to help you support and celebrate your specially-abled child.
-          </p>
+    <section class="resources" id="resources" aria-labelledby="resources-heading">
+      <div class="resources__inner">
+        <header class="resources__head">
+          <div class="resources__head-left">
+            <span class="label">Parent Resource Hub</span>
+            <h2 class="resources__heading" id="resources-heading">Guides to Support<br>Your Child</h2>
+          </div>
+          <div class="resources__head-right">
+            <p>A curated collection of books, organizations, websites, and everyday tips to help you support and celebrate your specially-abled child.</p>
+          </div>
         </header>
+        <div class="resources__grid" role="list">
 
-        <div class="resources__grid">
-
-          <!-- Books -->
-          <div class="resource-category resource-category--books reveal">
-            <div class="resource-category__header">
-              <span class="resource-category__icon" aria-hidden="true">📖</span>
-              <h3 class="resource-category__title">Recommended Books</h3>
+          <div class="resource-card resource-card--books" role="listitem">
+            <div class="resource-card__hd">
+              <div class="resource-card__icon" aria-hidden="true">&#128214;</div>
+              <div class="resource-card__title-wrap">
+                <h3>Recommended Books</h3>
+                <p class="resource-card__subtitle">Essential reading for families</p>
+              </div>
             </div>
-            <ul class="resource-category__list" role="list">
-              <li class="resource-item" role="listitem">
-                <span class="resource-item__dot" aria-hidden="true"></span>
-                <div class="resource-item__text">
-                  <strong>The Reason I Jump — Naoki Higashida</strong>
-                  A profound first-person account of life with autism, offering parents deep insight into their child's inner world.
-                </div>
-              </li>
-              <li class="resource-item" role="listitem">
-                <span class="resource-item__dot" aria-hidden="true"></span>
-                <div class="resource-item__text">
-                  <strong>Uniquely Human — Barry M. Prizant</strong>
-                  A compassionate and research-backed guide to understanding and supporting autistic children.
-                </div>
-              </li>
-              <li class="resource-item" role="listitem">
-                <span class="resource-item__dot" aria-hidden="true"></span>
-                <div class="resource-item__text">
-                  <strong>The Out-of-Sync Child — Carol Kranowitz</strong>
-                  Essential reading for parents of children with sensory processing differences.
-                </div>
-              </li>
-              <li class="resource-item" role="listitem">
-                <span class="resource-item__dot" aria-hidden="true"></span>
-                <div class="resource-item__text">
-                  <strong>Overcoming Dyslexia — Sally Shaywitz</strong>
-                  A trusted guide for understanding and supporting children with dyslexia.
-                </div>
-              </li>
+            <ul class="resource-card__list">
+              <li class="resource-entry"><span class="resource-entry__num">01</span><div class="resource-entry__text"><strong>The Reason I Jump — Naoki Higashida</strong><span>A profound first-person account of life with autism.</span></div></li>
+              <li class="resource-entry"><span class="resource-entry__num">02</span><div class="resource-entry__text"><strong>Uniquely Human — Barry M. Prizant</strong><span>Compassionate guide to understanding autistic children.</span></div></li>
+              <li class="resource-entry"><span class="resource-entry__num">03</span><div class="resource-entry__text"><strong>The Out-of-Sync Child — Carol Kranowitz</strong><span>Essential for parents of children with sensory differences.</span></div></li>
+              <li class="resource-entry"><span class="resource-entry__num">04</span><div class="resource-entry__text"><strong>Overcoming Dyslexia — Sally Shaywitz</strong><span>A trusted guide for supporting children with dyslexia.</span></div></li>
             </ul>
           </div>
 
-          <!-- Organizations -->
-          <div class="resource-category resource-category--orgs reveal reveal-delay-1">
-            <div class="resource-category__header">
-              <span class="resource-category__icon" aria-hidden="true">🏛️</span>
-              <h3 class="resource-category__title">Support Organizations</h3>
+          <div class="resource-card resource-card--orgs" role="listitem">
+            <div class="resource-card__hd">
+              <div class="resource-card__icon" aria-hidden="true">&#127963;</div>
+              <div class="resource-card__title-wrap">
+                <h3>Support Organizations</h3>
+                <p class="resource-card__subtitle">India &amp; international networks</p>
+              </div>
             </div>
-            <ul class="resource-category__list" role="list">
-              <li class="resource-item" role="listitem">
-                <span class="resource-item__dot" aria-hidden="true"></span>
-                <div class="resource-item__text">
-                  <strong>Action for Autism (India)</strong>
-                  India's premier autism organization offering resources, training, and a directory of support services.
-                </div>
-              </li>
-              <li class="resource-item" role="listitem">
-                <span class="resource-item__dot" aria-hidden="true"></span>
-                <div class="resource-item__text">
-                  <strong>National Trust (India)</strong>
-                  Government body supporting persons with autism, cerebral palsy, mental retardation, and multiple disabilities.
-                </div>
-              </li>
-              <li class="resource-item" role="listitem">
-                <span class="resource-item__dot" aria-hidden="true"></span>
-                <div class="resource-item__text">
-                  <strong>ADAPT (Able Disabled All People Together)</strong>
-                  Mumbai-based organization working across the spectrum of disability, rehabilitation, and inclusion.
-                </div>
-              </li>
-              <li class="resource-item" role="listitem">
-                <span class="resource-item__dot" aria-hidden="true"></span>
-                <div class="resource-item__text">
-                  <strong>Down Syndrome Federation of India</strong>
-                  A network of parent groups and organizations supporting families of children with Down syndrome.
-                </div>
-              </li>
+            <ul class="resource-card__list">
+              <li class="resource-entry"><span class="resource-entry__num">01</span><div class="resource-entry__text"><strong>Action for Autism (India)</strong><span>India's premier autism organization with resources and services.</span></div></li>
+              <li class="resource-entry"><span class="resource-entry__num">02</span><div class="resource-entry__text"><strong>National Trust (India)</strong><span>Government body supporting autism, cerebral palsy, and multiple disabilities.</span></div></li>
+              <li class="resource-entry"><span class="resource-entry__num">03</span><div class="resource-entry__text"><strong>ADAPT — Able Disabled All People Together</strong><span>Mumbai-based organization across disability and rehabilitation.</span></div></li>
+              <li class="resource-entry"><span class="resource-entry__num">04</span><div class="resource-entry__text"><strong>Down Syndrome Federation of India</strong><span>Network supporting families of children with Down syndrome.</span></div></li>
             </ul>
           </div>
 
-          <!-- Online Resources -->
-          <div class="resource-category resource-category--online reveal reveal-delay-2">
-            <div class="resource-category__header">
-              <span class="resource-category__icon" aria-hidden="true">💻</span>
-              <h3 class="resource-category__title">Online Platforms</h3>
+          <div class="resource-card resource-card--online" role="listitem">
+            <div class="resource-card__hd">
+              <div class="resource-card__icon" aria-hidden="true">&#128187;</div>
+              <div class="resource-card__title-wrap">
+                <h3>Online Platforms</h3>
+                <p class="resource-card__subtitle">Trusted digital resources</p>
+              </div>
             </div>
-            <ul class="resource-category__list" role="list">
-              <li class="resource-item" role="listitem">
-                <span class="resource-item__dot" aria-hidden="true"></span>
-                <div class="resource-item__text">
-                  <strong>Understood.org</strong>
-                  A world-class resource for parents of children with learning and thinking differences — articles, tools, and community.
-                </div>
-              </li>
-              <li class="resource-item" role="listitem">
-                <span class="resource-item__dot" aria-hidden="true"></span>
-                <div class="resource-item__text">
-                  <strong>Khan Academy (Accessible Learning)</strong>
-                  Free, self-paced academic content with visual and interactive lessons ideal for differently-abled learners.
-                </div>
-              </li>
-              <li class="resource-item" role="listitem">
-                <span class="resource-item__dot" aria-hidden="true"></span>
-                <div class="resource-item__text">
-                  <strong>AutismSpeaks.org</strong>
-                  A comprehensive resource hub including tools, guides, and research for autism families.
-                </div>
-              </li>
-              <li class="resource-item" role="listitem">
-                <span class="resource-item__dot" aria-hidden="true"></span>
-                <div class="resource-item__text">
-                  <strong>CDC — Learn the Signs. Act Early.</strong>
-                  Free developmental milestone tracking tools and early intervention resources from the CDC.
-                </div>
-              </li>
+            <ul class="resource-card__list">
+              <li class="resource-entry"><span class="resource-entry__num">01</span><div class="resource-entry__text"><strong>Understood.org</strong><span>World-class resource for parents of children with learning differences.</span></div></li>
+              <li class="resource-entry"><span class="resource-entry__num">02</span><div class="resource-entry__text"><strong>Khan Academy</strong><span>Free self-paced content ideal for differently-abled learners.</span></div></li>
+              <li class="resource-entry"><span class="resource-entry__num">03</span><div class="resource-entry__text"><strong>AutismSpeaks.org</strong><span>Comprehensive resource hub for autism families.</span></div></li>
+              <li class="resource-entry"><span class="resource-entry__num">04</span><div class="resource-entry__text"><strong>CDC — Learn the Signs. Act Early.</strong><span>Free developmental milestone tracking and early intervention tools.</span></div></li>
             </ul>
           </div>
 
-          <!-- Daily Tips -->
-          <div class="resource-category resource-category--tips reveal reveal-delay-3">
-            <div class="resource-category__header">
-              <span class="resource-category__icon" aria-hidden="true">💡</span>
-              <h3 class="resource-category__title">Everyday Tips for Parents</h3>
+          <div class="resource-card resource-card--tips" role="listitem">
+            <div class="resource-card__hd">
+              <div class="resource-card__icon" aria-hidden="true">&#128161;</div>
+              <div class="resource-card__title-wrap">
+                <h3>Everyday Tips for Parents</h3>
+                <p class="resource-card__subtitle">Practical daily guidance</p>
+              </div>
             </div>
-            <ul class="resource-category__list" role="list">
-              <li class="resource-item" role="listitem">
-                <span class="resource-item__dot" aria-hidden="true"></span>
-                <div class="resource-item__text">
-                  <strong>Celebrate the small wins.</strong>
-                  Every milestone — however small — is a giant leap. Build a culture of celebration at home.
-                </div>
-              </li>
-              <li class="resource-item" role="listitem">
-                <span class="resource-item__dot" aria-hidden="true"></span>
-                <div class="resource-item__text">
-                  <strong>Use visual schedules.</strong>
-                  Predictability reduces anxiety. Picture-based daily routines give children a sense of safety and control.
-                </div>
-              </li>
-              <li class="resource-item" role="listitem">
-                <span class="resource-item__dot" aria-hidden="true"></span>
-                <div class="resource-item__text">
-                  <strong>Follow the child's lead.</strong>
-                  Engage in activities your child loves. Interest-led learning is the most powerful kind.
-                </div>
-              </li>
-              <li class="resource-item" role="listitem">
-                <span class="resource-item__dot" aria-hidden="true"></span>
-                <div class="resource-item__text">
-                  <strong>Take care of yourself too.</strong>
-                  You cannot pour from an empty cup. Seek support, rest, and community for your own wellbeing.
-                </div>
-              </li>
+            <ul class="resource-card__list">
+              <li class="resource-entry"><span class="resource-entry__num">01</span><div class="resource-entry__text"><strong>Celebrate the small wins.</strong><span>Every milestone, however small, is a giant leap. Build a culture of celebration.</span></div></li>
+              <li class="resource-entry"><span class="resource-entry__num">02</span><div class="resource-entry__text"><strong>Use visual schedules.</strong><span>Predictability reduces anxiety. Picture-based routines give children safety.</span></div></li>
+              <li class="resource-entry"><span class="resource-entry__num">03</span><div class="resource-entry__text"><strong>Follow the child's lead.</strong><span>Interest-led learning is the most powerful kind of learning.</span></div></li>
+              <li class="resource-entry"><span class="resource-entry__num">04</span><div class="resource-entry__text"><strong>Take care of yourself too.</strong><span>You cannot pour from an empty cup. Seek support, rest, and community.</span></div></li>
             </ul>
           </div>
 
@@ -1853,120 +1762,77 @@
     </section>
 
     <!-- ============================================================
-         CONTACT
+         CONTACT — Split bg
     ============================================================ -->
-    <section class="contact section" id="contact" aria-labelledby="contact-heading">
-      <div class="container">
-        <div class="contact__grid">
-
-          <!-- Info Column -->
-          <div class="contact__info">
-            <span class="label reveal">Get In Touch</span>
-            <h2 class="display-lg reveal reveal-delay-1" id="contact-heading">
-              Let's Start Your Child's Journey Together
-            </h2>
-            <p class="reveal reveal-delay-2">
-              Whether you have questions about your child's needs, want to book a consultation, or simply need someone to talk to — I'm here. Reach out and let's take the first step together.
-            </p>
-
-            <div class="contact__details reveal reveal-delay-2">
-              <div class="contact__detail">
-                <div class="contact__detail-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-                </div>
-                <div class="contact__detail-text">
-                  <div class="contact__detail-label">Phone</div>
-                  <div class="contact__detail-value">+91 98765 43210</div>
-                </div>
-              </div>
-
-              <div class="contact__detail">
-                <div class="contact__detail-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                </div>
-                <div class="contact__detail-text">
-                  <div class="contact__detail-label">Email</div>
-                  <div class="contact__detail-value">deepa@deepasingh.in</div>
-                </div>
-              </div>
-
-              <div class="contact__detail">
-                <div class="contact__detail-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                </div>
-                <div class="contact__detail-text">
-                  <div class="contact__detail-label">Location</div>
-                  <div class="contact__detail-value">New Delhi, India (Online & In-Person)</div>
-                </div>
-              </div>
-
-              <div class="contact__detail">
-                <div class="contact__detail-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                </div>
-                <div class="contact__detail-text">
-                  <div class="contact__detail-label">Availability</div>
-                  <div class="contact__detail-value">Mon–Sat, 9 AM – 6 PM IST</div>
-                </div>
-              </div>
+    <section class="contact" id="contact" aria-labelledby="contact-heading">
+      <div class="contact__inner">
+        <div class="contact__left">
+          <span class="contact__eyebrow">Get In Touch</span>
+          <h2 class="contact__heading" id="contact-heading">Let's Start<br><em>Your Child's<br>Journey</em></h2>
+          <p class="contact__blurb">Whether you have questions, want to book a consultation, or simply need someone to talk to — I'm here.</p>
+          <div class="contact__details">
+            <div class="contact__detail">
+              <div class="contact__detail-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div>
+              <div><div class="contact__detail-label">Phone</div><div class="contact__detail-value">+91 98765 43210</div></div>
+            </div>
+            <div class="contact__detail">
+              <div class="contact__detail-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+              <div><div class="contact__detail-label">Email</div><div class="contact__detail-value">deepa@deepasingh.in</div></div>
+            </div>
+            <div class="contact__detail">
+              <div class="contact__detail-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+              <div><div class="contact__detail-label">Location</div><div class="contact__detail-value">New Delhi, India</div></div>
+            </div>
+            <div class="contact__detail">
+              <div class="contact__detail-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+              <div><div class="contact__detail-label">Availability</div><div class="contact__detail-value">Mon–Sat, 9 AM – 6 PM IST</div></div>
             </div>
           </div>
+        </div>
 
-          <!-- Form Column -->
-          <div class="contact__form reveal reveal-delay-2">
-            <form id="contact-form" novalidate aria-label="Contact form">
-              <div class="form-row">
-                <div class="form-group">
-                  <label for="fname">First Name <span aria-hidden="true">*</span></label>
-                  <input type="text" id="fname" name="fname" placeholder="Priya" autocomplete="given-name" required aria-required="true" />
-                </div>
-                <div class="form-group">
-                  <label for="lname">Last Name <span aria-hidden="true">*</span></label>
-                  <input type="text" id="lname" name="lname" placeholder="Sharma" autocomplete="family-name" required aria-required="true" />
-                </div>
-              </div>
-
+        <div class="contact__form-wrap">
+          <p class="contact__form-title">Send a Message</p>
+          <form id="contact-form" novalidate aria-label="Contact form">
+            <div class="form-row">
               <div class="form-group">
-                <label for="email">Email Address <span aria-hidden="true">*</span></label>
-                <input type="email" id="email" name="email" placeholder="priya@example.com" autocomplete="email" required aria-required="true" />
+                <label for="fname">First Name <span aria-hidden="true">*</span></label>
+                <input type="text" id="fname" name="fname" placeholder="Priya" autocomplete="given-name" required aria-required="true" />
               </div>
-
               <div class="form-group">
-                <label for="phone">Phone Number</label>
-                <input type="tel" id="phone" name="phone" placeholder="+91 98765 43210" autocomplete="tel" />
+                <label for="lname">Last Name <span aria-hidden="true">*</span></label>
+                <input type="text" id="lname" name="lname" placeholder="Sharma" autocomplete="family-name" required aria-required="true" />
               </div>
-
-              <div class="form-group">
-                <label for="inquiry">Type of Inquiry <span aria-hidden="true">*</span></label>
-                <select id="inquiry" name="inquiry" required aria-required="true">
-                  <option value="" disabled selected>Select an inquiry type</option>
-                  <option value="consultation">Book a Consultation</option>
-                  <option value="iep">IEP Planning</option>
-                  <option value="workshop">Parent Workshop</option>
-                  <option value="school">School Inclusion Consulting</option>
-                  <option value="resources">Resource Guidance</option>
-                  <option value="other">Other</option>
-                </select>
-              </div>
-
-              <div class="form-group">
-                <label for="message">Your Message <span aria-hidden="true">*</span></label>
-                <textarea id="message" name="message" placeholder="Tell me a little about your child and how I can help..." required aria-required="true"></textarea>
-              </div>
-
-              <button type="submit" class="btn btn--primary form__submit">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-                Send Message
-              </button>
-            </form>
-
-            <div class="form__success" id="form-success" role="alert" aria-live="polite">
-              <div class="form__success-icon" aria-hidden="true">🌿</div>
-              <h3>Thank you for reaching out!</h3>
-              <p>I'll get back to you within 24 hours. Every child's journey matters — and so does yours.</p>
             </div>
+            <div class="form-group">
+              <label for="email">Email Address <span aria-hidden="true">*</span></label>
+              <input type="email" id="email" name="email" placeholder="priya@example.com" autocomplete="email" required aria-required="true" />
+            </div>
+            <div class="form-group">
+              <label for="inquiry">Type of Inquiry <span aria-hidden="true">*</span></label>
+              <select id="inquiry" name="inquiry" required aria-required="true">
+                <option value="" disabled selected>Select an inquiry type</option>
+                <option value="consultation">Book a Consultation</option>
+                <option value="iep">IEP Planning</option>
+                <option value="workshop">Parent Workshop</option>
+                <option value="school">School Inclusion Consulting</option>
+                <option value="resources">Resource Guidance</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="message">Your Message <span aria-hidden="true">*</span></label>
+              <textarea id="message" name="message" placeholder="Tell me a little about your child and how I can help..." required aria-required="true"></textarea>
+            </div>
+            <button type="submit" class="btn btn--primary form__submit">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              Send Message
+            </button>
+          </form>
+          <div class="form__success" id="form-success" role="alert" aria-live="polite">
+            <div class="form__success-icon" aria-hidden="true">&#127807;</div>
+            <h3>Thank you for reaching out!</h3>
+            <p>I'll get back to you within 24 hours. Every child's journey matters — and so does yours.</p>
           </div>
-
         </div>
       </div>
     </section>
@@ -1976,149 +1842,160 @@
        FOOTER
   ============================================================ -->
   <footer class="footer" role="contentinfo">
-    <div class="container">
-      <div class="footer__grid">
-
+    <div class="footer__ghost" aria-hidden="true">DEEPA SINGH</div>
+    <div class="footer__inner">
+      <div class="footer__main">
         <div>
           <div class="footer__brand-name">Deepa <span>Singh</span></div>
           <p class="footer__tagline">B.Ed. Special Needs Educator dedicated to empowering differently-abled children and supporting the families who love them.</p>
           <div class="footer__social" aria-label="Social media links">
-            <!-- LinkedIn -->
-            <a href="#" class="footer__social-link" aria-label="LinkedIn profile">
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
-            </a>
-            <!-- Instagram -->
-            <a href="#" class="footer__social-link" aria-label="Instagram profile">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-            </a>
-            <!-- Facebook -->
-            <a href="#" class="footer__social-link" aria-label="Facebook page">
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
-            </a>
-            <!-- YouTube -->
-            <a href="#" class="footer__social-link" aria-label="YouTube channel">
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 00-1.95 1.96A29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="#1A2E28"/></svg>
-            </a>
+            <a href="#" class="footer__social-link" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
+            <a href="#" class="footer__social-link" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+            <a href="#" class="footer__social-link" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+            <a href="#" class="footer__social-link" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 00-1.95 1.96A29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="#0F1E1A"/></svg></a>
           </div>
         </div>
-
         <div>
           <h3 class="footer__col-title">Quick Links</h3>
-          <ul class="footer__links" role="list">
-            <li><a href="#about">About Me</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#resources">Resource Hub</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
+          <ul class="footer__links"><li><a href="#about">About Me</a></li><li><a href="#services">Services</a></li><li><a href="#resources">Resource Hub</a></li><li><a href="#contact">Contact</a></li></ul>
         </div>
-
         <div>
           <h3 class="footer__col-title">Services</h3>
-          <ul class="footer__links" role="list">
-            <li><a href="#services">IEP Planning</a></li>
-            <li><a href="#services">Early Intervention</a></li>
-            <li><a href="#services">Communication Support</a></li>
-            <li><a href="#services">Parent Workshops</a></li>
-            <li><a href="#services">Remedial Teaching</a></li>
-            <li><a href="#services">School Consulting</a></li>
-          </ul>
+          <ul class="footer__links"><li><a href="#services">IEP Planning</a></li><li><a href="#services">Early Intervention</a></li><li><a href="#services">Communication Support</a></li><li><a href="#services">Parent Workshops</a></li><li><a href="#services">Remedial Teaching</a></li><li><a href="#services">School Consulting</a></li></ul>
         </div>
-
       </div>
-
       <div class="footer__bottom">
-        <p class="footer__copy">© 2025 Deepa Singh. All rights reserved.</p>
-        <p class="footer__love">Made with <span>♥</span> for every extraordinary child</p>
+        <p class="footer__copy">&copy; 2025 Deepa Singh. All rights reserved.</p>
+        <p class="footer__love">Made with <span>&#9829;</span> for every extraordinary child</p>
       </div>
     </div>
   </footer>
 
-  <!-- ============================================================
-       JAVASCRIPT — Minimal, inline, no dependencies
-  ============================================================ -->
-  <script>
-    // ---- Nav scroll state ----
-    const nav = document.getElementById('nav');
-    const onScroll = () => {
-      nav.classList.toggle('nav--scrolled', window.scrollY > 24);
-    };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
-    // ---- Mobile menu ----
+  <script>
+    // Nav scroll
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => nav.classList.toggle('nav--scrolled', window.scrollY > 24), { passive: true });
+    nav.classList.toggle('nav--scrolled', window.scrollY > 24);
+
+    // Mobile menu
     const burger = document.getElementById('burger');
     const mobileMenu = document.getElementById('mobile-menu');
+    function closeMenu() { burger.classList.remove('open'); mobileMenu.classList.remove('open'); burger.setAttribute('aria-expanded','false'); document.body.style.overflow=''; }
+    burger.addEventListener('click', () => { const o=mobileMenu.classList.toggle('open'); burger.classList.toggle('open',o); burger.setAttribute('aria-expanded',String(o)); document.body.style.overflow=o?'hidden':''; });
+    document.addEventListener('keydown', e => { if(e.key==='Escape') closeMenu(); });
 
-    function closeMenu() {
-      burger.classList.remove('open');
-      mobileMenu.classList.remove('open');
-      burger.setAttribute('aria-expanded', 'false');
-      document.body.style.overflow = '';
-    }
-
-    burger.addEventListener('click', () => {
-      const isOpen = mobileMenu.classList.toggle('open');
-      burger.classList.toggle('open', isOpen);
-      burger.setAttribute('aria-expanded', isOpen);
-      document.body.style.overflow = isOpen ? 'hidden' : '';
-    });
-
-    // Close on Escape
-    document.addEventListener('keydown', e => {
-      if (e.key === 'Escape') closeMenu();
-    });
-
-    // ---- Scroll reveal ----
-    const revealEls = document.querySelectorAll('.reveal');
-    const revealObs = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          revealObs.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-
-    revealEls.forEach(el => revealObs.observe(el));
-
-    // ---- Contact form ----
+    // Contact form
     const form = document.getElementById('contact-form');
     const formSuccess = document.getElementById('form-success');
-
     form.addEventListener('submit', e => {
       e.preventDefault();
-
-      // Basic validation
-      const required = form.querySelectorAll('[required]');
       let valid = true;
-      required.forEach(field => {
-        field.style.borderColor = '';
-        if (!field.value.trim()) {
-          field.style.borderColor = '#C4714B';
-          valid = false;
+      form.querySelectorAll('[required]').forEach(f => { f.style.borderColor=''; if(!f.value.trim()){ f.style.borderColor='#C4714B'; valid=false; }});
+      if(!valid) return;
+      const btn=form.querySelector('[type="submit"]'); btn.disabled=true; btn.textContent='Sending…';
+      setTimeout(()=>{ form.style.display='none'; formSuccess.style.display='block'; }, 900);
+    });
+    form.querySelectorAll('input,select,textarea').forEach(f=>f.addEventListener('input',()=>{ f.style.borderColor=''; }));
+
+    // GSAP
+    if (typeof gsap !== 'undefined') {
+      gsap.registerPlugin(ScrollTrigger);
+      const noMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      if (!noMotion) {
+
+        // Nav + hero float
+        gsap.fromTo('.nav', { y:-70, opacity:0 }, { y:0, opacity:1, duration:0.75, ease:'power3.out', delay:0.1 });
+        gsap.to('.hero__image-wrap', { y:-14, duration:3.8, repeat:-1, yoyo:true, ease:'sine.inOut', delay:1.6 });
+        document.querySelectorAll('.hero__stat').forEach(s=>{
+          const n=s.querySelector('.hero__stat-num');
+          s.addEventListener('mouseenter',()=>gsap.to(n,{scale:1.12,color:'#C4714B',duration:0.25}));
+          s.addEventListener('mouseleave',()=>gsap.to(n,{scale:1,color:'#3D5C52',duration:0.3}));
+        });
+
+        // ABOUT: flora initial state only (heading always visible)
+        gsap.set('.flora', { scale: 0, opacity: 0, rotation: (i) => [-18, 22, -12, 16, -20, 10][i] || 0 });
+
+        // Word reveal — animate FROM hidden, so text is never invisible without GSAP
+        gsap.from('.word-inner', {
+          opacity: 0, y: 40, duration: 1.0, stagger: 0.13, ease: 'power4.out',
+          scrollTrigger: { trigger: '.about__heading-wrap', start: 'top 90%', once: true }
+        });
+
+        // Flora pop after words start
+        gsap.to('.flora', {
+          scale: 1, opacity: 1, rotation: 0, duration: 0.85, stagger: 0.09, ease: 'back.out(2)',
+          scrollTrigger: { trigger: '.about__heading-wrap', start: 'top 85%', once: true },
+          delay: 0.4
+        });
+
+        // About body text
+        gsap.from('.about__text p', { opacity:0, y:28, duration:0.7, stagger:0.15, scrollTrigger:{ trigger:'.about__text', start:'top 90%', once:true }});
+
+        // Stats — simple fade in, no counter (counters caused blank cells)
+        gsap.from('.about__stat', { opacity:0, y:20, duration:0.6, stagger:0.1, ease:'power2.out', scrollTrigger:{ trigger:'.about__stats', start:'top 90%', once:true }});
+
+        // Quals ticker
+        const qt=document.getElementById('quals-track');
+        if(qt){ qt.innerHTML+=qt.innerHTML; gsap.to(qt,{xPercent:-50,duration:22,ease:'none',repeat:-1}); }
+
+        // Services horizontal scroll
+        const track=document.getElementById('services-track');
+        if(track && window.innerWidth >= 760){
+          const getDist=()=>track.scrollWidth - window.innerWidth;
+          gsap.to(track,{
+            x:()=>-getDist(), ease:'none',
+            scrollTrigger:{
+              trigger:'.services', pin:true, scrub:1.5,
+              end:()=>'+=' + getDist(), invalidateOnRefresh:true,
+              onUpdate:(self)=>{
+                const dots=document.querySelectorAll('.progress-dot');
+                const idx=Math.min(Math.floor(self.progress*dots.length*1.2),dots.length-1);
+                dots.forEach((d,i)=>d.classList.toggle('active',i===idx));
+              }
+            }
+          });
+          document.querySelectorAll('.service-panel').forEach(p=>{
+            p.addEventListener('mouseenter',()=>gsap.to(p,{scale:1.02,duration:0.3,ease:'power2.out',overwrite:'auto'}));
+            p.addEventListener('mouseleave',()=>gsap.to(p,{scale:1,duration:0.35,ease:'power2.inOut',overwrite:'auto'}));
+          });
         }
-      });
 
-      if (!valid) {
-        form.querySelector('[required]:invalid, [required][style*="border"]').focus();
-        return;
+        // Philosophy marquees
+        const m1=document.getElementById('marquee-1'), m2=document.getElementById('marquee-2');
+        if(m1){ m1.innerHTML+=m1.innerHTML; gsap.to(m1,{xPercent:-50,duration:28,ease:'none',repeat:-1}); }
+        if(m2){ m2.innerHTML+=m2.innerHTML; gsap.fromTo(m2,{xPercent:-50},{xPercent:0,duration:22,ease:'none',repeat:-1}); }
+
+        // Resources
+        gsap.fromTo('.resources__heading',{opacity:0,y:40},{opacity:1,y:0,duration:0.85,ease:'power3.out', scrollTrigger:{trigger:'.resources__head',start:'top 80%',once:true}});
+        gsap.fromTo('.resource-card',{opacity:0,y:50,scale:0.96},{opacity:1,y:0,scale:1,duration:0.7,stagger:0.12,ease:'power3.out', scrollTrigger:{trigger:'.resources__grid',start:'top 78%',once:true}});
+        gsap.fromTo('.resource-entry',{opacity:0,x:-16},{opacity:1,x:0,duration:0.4,stagger:0.04,ease:'power2.out', scrollTrigger:{trigger:'.resources__grid',start:'top 65%',once:true}});
+
+        document.querySelectorAll('.resource-card').forEach(c=>{
+          c.addEventListener('mouseenter',()=>gsap.to(c,{y:-6,duration:0.3,ease:'power2.out',overwrite:'auto'}));
+          c.addEventListener('mouseleave',()=>gsap.to(c,{y:0,duration:0.35,ease:'power2.inOut',overwrite:'auto'}));
+        });
+
+        // Contact
+        gsap.timeline({scrollTrigger:{trigger:'.contact',start:'top 75%',once:true}})
+          .fromTo('.contact__eyebrow',{opacity:0,y:20},{opacity:1,y:0,duration:0.5})
+          .fromTo('.contact__heading',{opacity:0,y:40},{opacity:1,y:0,duration:0.8,ease:'power3.out'},'-=0.3')
+          .fromTo('.contact__blurb',{opacity:0,y:24},{opacity:1,y:0,duration:0.6},'-=0.4')
+          .fromTo('.contact__detail',{opacity:0,x:-24},{opacity:1,x:0,duration:0.5,stagger:0.1},'-=0.3')
+          .fromTo('.contact__form-wrap',{opacity:0,x:50},{opacity:1,x:0,duration:0.9,ease:'power3.out'},'-=0.7');
+
+        // Footer
+        gsap.fromTo('.footer__main > div',{opacity:0,y:32},{opacity:1,y:0,duration:0.7,stagger:0.14,ease:'power3.out', scrollTrigger:{trigger:'.footer',start:'top 85%',once:true}});
+        document.querySelectorAll('.footer__social-link').forEach(l=>{
+          l.addEventListener('mouseenter',()=>gsap.to(l,{scale:1.22,y:-3,duration:0.25,ease:'back.out(2)'}));
+          l.addEventListener('mouseleave',()=>gsap.to(l,{scale:1,y:0,duration:0.3}));
+        });
+
       }
-
-      // Simulate submission (replace with real endpoint)
-      const submitBtn = form.querySelector('[type="submit"]');
-      submitBtn.disabled = true;
-      submitBtn.textContent = 'Sending…';
-
-      setTimeout(() => {
-        form.style.display = 'none';
-        formSuccess.style.display = 'block';
-      }, 900);
-    });
-
-    // Reset field error state on input
-    form.querySelectorAll('input, select, textarea').forEach(field => {
-      field.addEventListener('input', () => { field.style.borderColor = ''; });
-    });
+    }
   </script>
 
 </body>
